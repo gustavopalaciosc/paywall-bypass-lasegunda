@@ -1,0 +1,61 @@
+.header-container {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title-newspaper-name {
+    color: #008872;
+}
+
+.options-container {
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#subsection {
+    margin: 4px;
+    cursor: pointer;
+}
+
+#date {
+    margin: 4px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.search-button {
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    border-radius: 3px;
+    color: #FFF;
+    background-color: #008872;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #00ba9b;
+    transition: 0.1s;
+}
+
+
+#noticias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
