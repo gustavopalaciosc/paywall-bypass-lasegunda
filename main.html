@@ -8,7 +8,9 @@
 </head>
 <body>
     <div class="header-container">
-        <h1 class="title">Paywall Bypass <span class="title-newspaper-name">Diario la Segunda</span></h1>
+        <h1 class="title">
+            Paywall Bypass Diario <span class="title-newspaper-name">La Segunda</span>
+        </h1>
     </div>
 
     <div class="options-container">
@@ -20,20 +22,21 @@
             <option value="Politica">Política</option>
         </select>
         <input type="date" id="date-input">
+        <input 
+            type="number" 
+            id="number-results" 
+            min="1" 
+            max="100" 
+            value="1" 
+            placeholder="Número de resultados"
+        >
     </div>
-
     <div class="button-container">
         <button id="search-button" class="search-button">Buscar</button>
     </div>
-
     <div id="noticias">
 
     </div>
-    
-    
-
-
-
     <script src="/script.js"></script>
 </body>
 </html>

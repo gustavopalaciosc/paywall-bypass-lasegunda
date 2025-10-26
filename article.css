@@ -1,0 +1,59 @@
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  background-color: #fafafa;
+  color: #222;
+}
+
+.header {
+  background-color: #ffffff;
+  border-bottom: 2px solid #008872;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.newspaper-name {
+  color: #008872;
+  font-weight: bold;
+}
+
+.article-container {
+  max-width: 750px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.article-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+.article-body {
+  font-size: 1.05rem;
+  text-align: justify;
+  white-space: pre-line; /* respeta saltos de línea */
+}
