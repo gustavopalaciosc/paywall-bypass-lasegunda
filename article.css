@@ -55,5 +55,25 @@ body {
 .article-body {
   font-size: 1.05rem;
   text-align: justify;
-  white-space: pre-line; /* respeta saltos de línea */
+  white-space: pre-line; 
+}
+
+.back-btn-container {
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.back-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #008872;
+  border: none;
+  cursor: pointer;
 }

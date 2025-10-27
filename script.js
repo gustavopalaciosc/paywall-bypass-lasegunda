@@ -1,12 +1,8 @@
 
-
 async function getArticlesByDate() {
-    console.log("Llamado a la api");
+    const date = document.getElementById("date-input").value;
     var e = document.getElementById("article-subsections");
     var text = e.options[e.selectedIndex].text;
-
-    const date = document.getElementById("date-input").value;
-
     var numberResults = document.getElementById("number-results").value;
     
     if (numberResults > 100) {
@@ -15,10 +11,7 @@ async function getArticlesByDate() {
         numberResults = 1;
     } 
 
-
     let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${text}?size=${numberResults}&fechaPublicacion=${date}`;
-
-    const articlesList = [];
 
     try {
         const response = await fetch(url);
@@ -33,6 +26,8 @@ async function getArticlesByDate() {
         console.log(data);
 
         data.hits.hits.forEach((hit, idx) => {
+
+            const id = hit._id;
             const noticia = hit._source;
 
             const article = document.createElement('article');
@@ -62,18 +57,9 @@ async function getArticlesByDate() {
             //console.log(noticia.texto);
 
             const link = document.createElement('a');
-            link.href = `/article.html?id=${idx}`;
+            link.href = `/article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
             link.textContent = 'Leer más';
             link.target = '_blank';
-
-            articlesList.push({
-                id: idx,
-                title: noticia.titulo,
-                subtitle: noticia.bajada?.[0]?.texto || '',
-                author: noticia.autor,
-                date: `${new Date(noticia.fechaPublicacion).toLocaleDateString()}`,
-                body: noticia.texto
-            });
 
             if (noticia.tablas?.tablaMedios?.length > 0) {
                 const img = document.createElement('img');
@@ -92,19 +78,10 @@ async function getArticlesByDate() {
 
             contenedor.appendChild(article);
         });
-        
-        // Save article in localStorage
-        localStorage.setItem("articles", JSON.stringify(articlesList));
-
-        console.log(articlesList);
 
     } catch (error) {
         console.log("Error:", error);
     }
-
 }
 
-
 document.getElementById("search-button").onclick = getArticlesByDate;
-
-
