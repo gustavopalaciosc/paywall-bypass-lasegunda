@@ -46,6 +46,6 @@ if (articleDataLength == 0) {
 
 document.querySelectorAll('.back-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-      window.location.href = '/main.html';
+      window.location.href = 'main.html';
   });
 });
