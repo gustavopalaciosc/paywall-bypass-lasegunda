@@ -57,7 +57,7 @@ async function getArticlesByDate() {
             //console.log(noticia.texto);
 
             const link = document.createElement('a');
-            link.href = `/article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
+            link.href = `article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
             link.textContent = 'Leer más';
             link.target = '_blank';
 
