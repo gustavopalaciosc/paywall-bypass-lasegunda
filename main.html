@@ -7,29 +7,40 @@
     
 </head>
 <body>
-    <div class="header-container">
-        <h1 class="title">
-            Paywall Bypass Diario <span class="title-newspaper-name">La Segunda</span>
-        </h1>
-    </div>
+    <header class="header">
+      <h1 class="main-title">
+        Paywall Bypass Diario
+        <span class="newspaper-name">La Segunda</span>
+      </h1>
+    </header>
 
     <div class="options-container">
-        <select name="article-subsections" id="article-subsections">
-            <option value="Columnas">Columnas</option>
-            <option value="Encuestas">Encuestas</option>
-            <option value="Conversación">Conversación</option>
-            <option value="Internacional">Internacional</option>
-            <option value="Politica">Política</option>
-        </select>
-        <input type="date" id="date-input">
-        <input 
-            type="number" 
-            id="number-results" 
-            min="1" 
-            max="100" 
-            value="1" 
-            placeholder="Número de resultados"
-        >
+        <div class="option-container">
+            <h2 class="option-title">Sección</h2>
+            <select class="search-element" name="article-subsections" id="article-subsections">
+                <option value="Columnas">Columnas</option>
+                <option value="Encuestas">Encuestas</option>
+                <option value="Conversación">Conversación</option>
+                <option value="Internacional">Internacional</option>
+                <option value="Politica">Política</option>
+            </select>
+        </div>
+        <div class="option-container">
+            <h2 class="option-title">Fecha</h2>
+            <input class="search-element" type="date" id="date-input">
+        </div>
+        <div class="option-container">
+            <h2 class="option-title">Número artículos</h2>
+            <input 
+                class="search-element"
+                type="number" 
+                id="number-results" 
+                min="1" 
+                max="100" 
+                value="1" 
+                placeholder="Número de resultados"
+            >
+        </div>
     </div>
     <div class="button-container">
         <button id="search-button" class="search-button">Buscar</button>

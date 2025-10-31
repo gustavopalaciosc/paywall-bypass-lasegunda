@@ -1,21 +1,58 @@
-.header-container {
-    display: flex;
-    justify-content: center;
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  background-color: #fafafa;
+  color: #222;
 }
 
-.title {
-    font-family: Arial, Helvetica, sans-serif;
+.header {
+  background-color: #ffffff;
+  border-bottom: 2px solid #008872;
+  padding: 1rem 0;
+  text-align: center;
 }
 
-.title-newspaper-name {
-    color: #008872;
+.main-title {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.newspaper-name {
+  color: #008872;
+  font-weight: bold;
 }
 
 .options-container {
-    padding: 4px;
+    border: #008872;
+    border-radius: 5px;
+    padding: 2px;
     display: flex;
     justify-content: center;
-    
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    margin-left: 5px;
+
+}
+
+.search-element {
+    padding: 4px;
+    width: 100%;
+    font-size: 16px;
+    border-color: #c2c2c2;
+    border-width: 1px;
+    border-radius: 2px;
+}
+
+.option-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #4e4e4e;
 }
 
 #subsection {
@@ -29,6 +66,7 @@
 }
 
 .button-container {
+    padding: 10px;
     display: flex;
     justify-content: center;
 }
@@ -57,4 +95,10 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
+}
+
+@media (max-width: 480px) {
+    .options-container {
+        flex-direction: column;
+    }
 }
