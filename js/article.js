@@ -1,7 +1,6 @@
 import { decodeHTML } from "./decodeHTML.js";
 
 async function getArticleData(subsection, size, date) {
-    //let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/Columnas?id=${articleId}`;
     let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${subsection}?size=${size}&fechaPublicacion=${date}`;
     
     try {
@@ -46,6 +45,6 @@ if (articleDataLength == 0) {
 
 document.querySelectorAll('.back-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-      window.location.href = 'main.html';
+      window.location.href = '/';
   });
 });

@@ -20,10 +20,8 @@ async function getArticlesByDate() {
         }
 
         const data = await response.json();
-        //console.log(result.hits.hits);
         const contenedor = document.getElementById('noticias');
         contenedor.innerHTML = '';
-        console.log(data);
 
         data.hits.hits.forEach((hit, idx) => {
 
@@ -54,7 +52,6 @@ async function getArticlesByDate() {
             // Cuerpo de la noticia
             const cuerpo = document.createElement('small');
             cuerpo.textContent = noticia.texto;
-            //console.log(noticia.texto);
 
             const link = document.createElement('a');
             link.href = `article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
