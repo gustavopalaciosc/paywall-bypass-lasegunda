@@ -1,21 +1,5 @@
+import { api } from "./client.js";
 import { decodeHTML } from "./decodeHTML.js";
-
-async function getArticleData(subsection, size, date) {
-    let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${subsection}?size=${size}&fechaPublicacion=${date}`;
-    
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data;
-
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-
 
 const params = new URLSearchParams(window.location.search);
 
@@ -24,7 +8,8 @@ const date = params.get("date");
 const subsection = params.get("subsection");
 
 const articleId = parseInt(params.get("id"), 10);
-const articlesData = await getArticleData(subsection, size, date);
+let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${subsection}?size=${size}&fechaPublicacion=${date}`;
+const articlesData = await api(url);
 
 const articleDataLength = articlesData.hits.hits.length;
 
@@ -45,11 +30,6 @@ if (articleDataLength == 0) {
 
 document.querySelectorAll('.back-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const isGitHubPages = window.location.hostname.includes('github.io');
-    if (isGitHubPages) {
-        window.location.href = "./";
-    } else {
-        window.location.href = "../";
-    }
+    window.location.href = "./";
   });
 });

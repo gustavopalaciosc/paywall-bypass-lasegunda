@@ -1,3 +1,4 @@
+import { api } from "./client.js";
 
 async function getArticlesByDate() {
     const date = document.getElementById("date-input").value;
@@ -14,12 +15,8 @@ async function getArticlesByDate() {
     let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${text}?size=${numberResults}&fechaPublicacion=${date}`;
 
     try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
+        const data = await api(url);
 
-        const data = await response.json();
         const contenedor = document.getElementById('noticias');
         contenedor.innerHTML = '';
 
