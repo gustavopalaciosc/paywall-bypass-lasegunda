@@ -47,7 +47,7 @@ document.querySelectorAll('.back-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const isGitHubPages = window.location.hostname.includes('github.io');
     if (isGitHubPages) {
-        window.location.href = "./paywall-bypass-lasegunda/";
+        window.location.href = "./";
     } else {
         window.location.href = "../";
     }
