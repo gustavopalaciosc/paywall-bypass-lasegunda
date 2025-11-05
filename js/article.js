@@ -45,6 +45,12 @@ if (articleDataLength == 0) {
 
 document.querySelectorAll('.back-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    window.location.href = "../";
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    console.log(isGitHubPages);
+    if (isGitHubPages) {
+        window.location.href = "paywall-bypass-lasegunda";
+    } else {
+        window.location.href = "../";
+    }
   });
 });
