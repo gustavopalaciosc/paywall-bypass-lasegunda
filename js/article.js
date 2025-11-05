@@ -44,11 +44,10 @@ if (articleDataLength == 0) {
 
 
 document.querySelectorAll('.back-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('click', () => {
     const isGitHubPages = window.location.hostname.includes('github.io');
-    console.log(isGitHubPages);
     if (isGitHubPages) {
-        window.location.href = "paywall-bypass-lasegunda";
+        window.location.href = "";
     } else {
         window.location.href = "../";
     }
