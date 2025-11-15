@@ -34,13 +34,11 @@ body {
 .option-container {
     display: flex;
     flex-direction: column;
-    padding: 2px;
-    margin-left: 5px;
-
+    padding: 10px;
 }
 
 .search-element {
-    padding: 4px;
+    height: 100%;
     width: 100%;
     font-size: 16px;
     border-color: #c2c2c2;
@@ -97,7 +95,7 @@ body {
     padding: 20px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .options-container {
         flex-direction: column;
     }
