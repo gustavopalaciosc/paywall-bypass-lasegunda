@@ -33,10 +33,11 @@ async function getArticlesByDate() {
         article.style.maxWidth = "600px";
         article.style.borderRadius = "5px"
         article.style.border = "1px solid #ccc";
-        article.style.boxShadow = "2px 4px 5px 5px #f1f1f1f6";
-    
+        article.style.boxShadow = "2px 4px 5px 5px #f1f1f1";
+
+        // News container structure
         const title = document.createElement('h2');
-        title.textContent = noticia.titulo;
+        title.textContent = noticia.titulo.replace(/&quot;/g, '"');
         const subtitle = document.createElement('p');
         subtitle.textContent = noticia.bajada?.[0]?.texto || '';
         const date = document.createElement('small');
