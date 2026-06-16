@@ -1,73 +1,85 @@
 import { api } from "./client.js";
 
-async function getArticlesByDate() {
-    const date = document.getElementById("date-input").value;
-    var e = document.getElementById("article-subsections");
-    var text = e.options[e.selectedIndex].text;
-    var numberResults = document.getElementById("number-results").value;
+
+const dateInput = document.getElementById("date-filter");
+const sizeInput = document.getElementById("size-input");
+const sectionInput = document.getElementById("article-sections");
+const loadingMessageContainer = document.getElementById("loader-container")
+
+
+async function getArticles() {
+  const date = document.getElementById("date-filter").value;
+  var e = document.getElementById("article-sections");
+  var text = e.options[e.selectedIndex].text;
+  var numberResults = document.getElementById("size-input").value;
     
-    if (numberResults > 100) {
-        numberResults = 100;
-    } else if (numberResults < 1) {
-        numberResults = 1;
-    } 
+  if (numberResults > 100) {
+    numberResults = 100;
+  } else if (numberResults < 1) {
+    numberResults = 1;
+  } 
 
-    let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${text}?size=${numberResults}&fechaPublicacion=${date}`;
-    let data;
+  let url = `https://newsapi.ecn.cl/NewsApi/lasegunda/subseccion/${text}?size=${numberResults}&fechaPublicacion=${date}`;
+  let data;
 
-    try {
-        data = await api(url);
-    } catch (error) {
-        console.error("Error", error);
-        return;
+  try {
+    data = await api(url);
+  } catch (error) {
+    console.error("Error", error);
+    return;
+  } finally {
+		loadingMessageContainer.style.display = "none";
+	}
+
+  const contenedor = document.getElementById('noticias');
+  contenedor.innerHTML = '';
+  data.hits.hits.forEach((hit) => {
+    const id = hit._id;
+    const noticia = hit._source;
+    const article = document.createElement('article');
+    article.style.margin = "10px";
+    article.style.padding = "10px";
+    article.style.maxWidth = "600px";
+    article.style.borderRadius = "5px"
+    article.style.border = "1px solid #ccc";
+    article.style.boxShadow = "2px 4px 5px 5px #f1f1f1";
+
+    // News container structure
+    const title = document.createElement('h2');
+    title.textContent = noticia.titulo.replace(/&quot;/g, '"');
+    const subtitle = document.createElement('p');
+    subtitle.textContent = noticia.bajada?.[0]?.texto || '';
+    const date = document.createElement('small');
+    date.textContent = `Publicado: ${new Date(noticia.fechaPublicacion).toLocaleDateString()}`;
+    const author = document.createElement('small');
+    author.textContent = ` | Autor: ${noticia.autor}`;
+    // Cuerpo de la noticia
+    const cuerpo = document.createElement('small');
+    cuerpo.textContent = noticia.texto;
+    const link = document.createElement('a');
+    link.href = `article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
+    link.textContent = 'Leer más';
+    link.target = '_blank';
+    if (noticia.tablas?.tablaMedios?.length > 0) {
+      const img = document.createElement('img');
+      img.src = noticia.tablas.tablaMedios[0].Url;
+      img.alt = 'Imagen';
+      img.style.maxWidth = '100%';
+      article.appendChild(img);
     }
-
-    const contenedor = document.getElementById('noticias');
-    contenedor.innerHTML = '';
-    data.hits.hits.forEach((hit) => {
-        const id = hit._id;
-        const noticia = hit._source;
-        const article = document.createElement('article');
-        article.style.margin = "10px";
-        article.style.padding = "10px";
-        article.style.maxWidth = "600px";
-        article.style.borderRadius = "5px"
-        article.style.border = "1px solid #ccc";
-        article.style.boxShadow = "2px 4px 5px 5px #f1f1f1";
-
-        // News container structure
-        const title = document.createElement('h2');
-        title.textContent = noticia.titulo.replace(/&quot;/g, '"');
-        const subtitle = document.createElement('p');
-        subtitle.textContent = noticia.bajada?.[0]?.texto || '';
-        const date = document.createElement('small');
-        date.textContent = `Publicado: ${new Date(noticia.fechaPublicacion).toLocaleDateString()}`;
-        const author = document.createElement('small');
-        author.textContent = ` | Autor: ${noticia.autor}`;
-        // Cuerpo de la noticia
-        const cuerpo = document.createElement('small');
-        cuerpo.textContent = noticia.texto;
-        const link = document.createElement('a');
-        link.href = `article.html?id=${id}&subsection=${text}&size=${numberResults}&date=${new Date(noticia.fechaPublicacion).toISOString().split("T")[0]}`;
-        link.textContent = 'Leer más';
-        link.target = '_blank';
-        if (noticia.tablas?.tablaMedios?.length > 0) {
-            const img = document.createElement('img');
-            img.src = noticia.tablas.tablaMedios[0].Url;
-            img.alt = 'Imagen';
-            img.style.maxWidth = '100%';
-            article.appendChild(img);
-        }
-        article.appendChild(title);
-        article.appendChild(subtitle);
-        article.appendChild(date);
-        article.appendChild(author);
-        article.appendChild(document.createElement('br'));
-        article.appendChild(link);
-        contenedor.appendChild(article);
-    });
-
-   
+    article.appendChild(title);
+    article.appendChild(subtitle);
+    article.appendChild(date);
+    article.appendChild(author);
+    article.appendChild(document.createElement('br'));
+    article.appendChild(link);
+    contenedor.appendChild(article);
+  });
 }
 
-document.getElementById("search-button").onclick = getArticlesByDate;
+
+[dateInput, sizeInput, sectionInput].map((element) => {
+	element.addEventListener("change", getArticles);
+});
+
+getArticles();

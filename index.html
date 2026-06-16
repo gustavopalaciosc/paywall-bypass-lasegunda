@@ -18,13 +18,17 @@
   <div class="options-container">
     <div class="option-container">
       <h2 class="option-title">Sección</h2>
-      <select class="search-element" name="article-subsections" id="article-subsections">
+      <select 
+				id="article-sections"
+				class="search-element" 
+				name="article-subsections" 
+			>
+				<option value="Economía">Economía</option>
+        <option value="Politica">Política</option>
+        <option value="Internacional">Internacional</option>
         <option value="Columnas">Columnas</option>
         <option value="Encuestas">Encuestas</option>
         <option value="Conversación">Conversación</option>
-        <option value="Internacional">Internacional</option>
-        <option value="Politica">Política</option>
-        <option value="Economía">Economía</option>
     		<option value="Circulo-Empresarial">Círculo Empresarial</option>
         <option value="Top-Secret">Top Secret</option>
         <option value="Buena-Prosa">Buena Prosa</option>
@@ -33,26 +37,34 @@
     </div>
     <div class="option-container">
       <h2 class="option-title">Fecha</h2>
-			<input class="search-element" type="date" id="date-input">
+			<input 
+				id="date-filter" 
+				class="search-element" 
+				type="date" 
+			>
 		</div>
 		<div class="option-container">
       <h2 class="option-title">Número artículos</h2>
       <input 
+				id="size-input" 
         class="search-element"
         type="number" 
-        id="number-results" 
         min="1" 
         max="100" 
-        value="1" 
+        value="25" 
         placeholder="Número de resultados"
       >
     </div>
   </div>
-  <div class="button-container">
-    <button id="search-button" class="search-button">Buscar</button>
-  </div>
+
+	<div id="loader-container" class="loader-container">
+		<p id="loader" class="loader-message">Cargando...</p>
+	</div>
   <div id="noticias">
   </div>
   <script type="module" src="js/script.js"></script>
+	<script>
+		document.getElementById("date-filter").valueAsDate = new Date();
+	</script>
 </body>
 </html>
